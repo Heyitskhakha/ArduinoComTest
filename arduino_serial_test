@@ -1,0 +1,26 @@
+# Importing Libraries
+import serial
+import time
+import keyboard
+arduinoX = serial.Serial(port='COM5', baudrate=115200, timeout=.00000001)
+
+def write_read(X):
+    #arduinoX.write(bytes(X+'\r', 'utf-8'))
+    #print(X+'\r')
+    send=X
+    arduinoX.write(send.encode())
+
+    data = arduinoX.readline()
+    print(data.decode())
+    return data
+
+
+while True:
+    X = input("Enter X number: ") # Taking input from user
+    Y = input("Enter Y number: ")  # Taking input from user
+    count=0
+    #X='5'
+    #Y='5'
+    XX=X+':'+Y+':Q'
+
+    write_read(XX)
